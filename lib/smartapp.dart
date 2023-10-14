@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
 
@@ -82,6 +83,37 @@ class _smarthome_appState extends State<smarthome_app> {
             ),
             Obx(() => Text(
                 'LED State: ${blynkController.isLedOn.value ? 'On' : 'Off'}')),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              child: Center(
+                child: Obx(
+                  () => Container(
+                    child: CircularPercentIndicator(
+                      animation: true,
+                      animationDuration: 1000,
+                      radius: 110,
+                      lineWidth: 20,
+                      percent: double.parse(blynkController.blynkData_w.value) /
+                          double.parse(blynkController.blynkData.value),
+                      progressColor: Colors.amber,
+                      backgroundColor: Color.fromARGB(225, 199, 253, 245),
+                      circularStrokeCap: CircularStrokeCap.round,
+                      center: Center(
+                        child: Text(
+                          blynkController.blynkData.value,
+                          style: TextStyle(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
