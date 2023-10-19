@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geekyants_flutter_gauges/geekyants_flutter_gauges.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
+import 'package:kdgaugeview/kdgaugeview.dart';
 
 class smarthome_app extends StatefulWidget {
   @override
@@ -91,18 +93,19 @@ class _smarthome_appState extends State<smarthome_app> {
                 child: Obx(
                   () => Container(
                     child: CircularPercentIndicator(
-                      animation: true,
+                      // animation: true,
                       animationDuration: 1000,
                       radius: 110,
                       lineWidth: 20,
-                      percent: double.parse(blynkController.blynkData_w.value) /
-                          double.parse(blynkController.blynkData.value),
+                      percent:
+                          double.parse(blynkController.blynkData_w.value) / 500,
+                      // double.parse(blynkController.blynkData.value),
                       progressColor: Colors.amber,
                       backgroundColor: Color.fromARGB(225, 199, 253, 245),
                       circularStrokeCap: CircularStrokeCap.round,
                       center: Center(
                         child: Text(
-                          blynkController.blynkData.value,
+                          blynkController.blynkData_w.value,
                           style: TextStyle(
                             fontSize: 40,
                             color: Colors.black,
@@ -111,6 +114,39 @@ class _smarthome_appState extends State<smarthome_app> {
                       ),
                     ),
                   ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Obx(
+              () =>
+                  // Text(
+                  //     'Blynk Data Widget: ${blynkController.blynkData_w.value}'),
+
+                  Container(
+                height: 200,
+                width: 200,
+                child: RadialGauge(
+                  track: RadialTrack(
+                    start: 0,
+                    end: 500,
+                    thickness: 15,
+                    trackStyle: TrackStyle(
+                      showPrimaryRulers: false,
+                      showSecondaryRulers: false,
+                      showLabel: false,
+                      showFirstLabel: true,
+                      showLastLabel: true,
+                    ),
+                  ),
+                  valueBar: [
+                    RadialValueBar(
+                      value: double.parse(blynkController.blynkData_w.value),
+                      valueBarThickness: 25,
+                    ),
+                  ],
                 ),
               ),
             ),

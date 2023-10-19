@@ -40,7 +40,7 @@ class BlynkController extends GetxController {
   void getDataSensorWidget() {
     Stream.periodic(Duration(seconds: 1)).asyncMap((_) async {
       final response = await client.get(Uri.parse(
-          'https://blynk.cloud/external/api/get?token=LnbdYpZOLUPSW_libzMp4yRveyBDx3an&v4'));
+          'https://blynk.cloud/external/api/get?token=LnbdYpZOLUPSW_libzMp4yRveyBDx3an&v0'));
       return response.body;
     }).listen((data) {
       blynkData_w.value = data;
