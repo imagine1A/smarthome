@@ -125,35 +125,49 @@ class _smarthome_appState extends State<smarthome_app> {
               SizedBox(
                 height: 16,
               ),
-              Obx(
-                () =>
-                    // Text(
-                    //     'Blynk Data Widget: ${blynkController.blynkData_w.value}'),
-
-                    Container(
-                  height: 200,
-                  width: 200,
-                  child: RadialGauge(
-                    track: RadialTrack(
-                      start: 0,
-                      end: 500,
-                      thickness: 15,
-                      trackStyle: TrackStyle(
-                        showPrimaryRulers: false,
-                        showSecondaryRulers: false,
-                        showLabel: false,
-                        showFirstLabel: true,
-                        showLastLabel: true,
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Center(
+                    child: Obx(
+                      () => Text(
+                        '${blynkController.blynkData_w.value}',
+                        style: TextStyle(fontSize: 32),
                       ),
                     ),
-                    valueBar: [
-                      RadialValueBar(
-                        value: double.parse(blynkController.blynkData_w.value),
-                        valueBarThickness: 25,
-                      ),
-                    ],
                   ),
-                ),
+                  Obx(
+                    () =>
+                        // Text(
+                        //     'Blynk Data Widget: ${blynkController.blynkData_w.value}'),
+
+                        Container(
+                      height: 200,
+                      width: 200,
+                      child: RadialGauge(
+                        track: RadialTrack(
+                          start: 0,
+                          end: 500,
+                          thickness: 15,
+                          trackStyle: TrackStyle(
+                            showPrimaryRulers: false,
+                            showSecondaryRulers: false,
+                            showLabel: false,
+                            showFirstLabel: true,
+                            showLastLabel: true,
+                          ),
+                        ),
+                        valueBar: [
+                          RadialValueBar(
+                            value:
+                                double.parse(blynkController.blynkData_w.value),
+                            valueBarThickness: 25,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Obx(
                 () =>
@@ -171,12 +185,16 @@ class _smarthome_appState extends State<smarthome_app> {
                         thickness: 70,
                         borderRadius: 24,
                       ),
+                      customLabels: [
+                        CustomRulerLabel(text: "0 Empty", value: 0),
+                        CustomRulerLabel(text: "500 Full", value: 500),
+                      ],
                       gaugeOrientation: GaugeOrientation.vertical,
                       rulers: RulerStyle(
                         rulerPosition: RulerPosition.center,
-                        showLabel: false,
                         showPrimaryRulers: false,
                         showSecondaryRulers: false,
+                        labelOffset: 28,
                       ),
                       valueBar: [
                         ValueBar(
