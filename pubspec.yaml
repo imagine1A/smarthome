@@ -41,6 +41,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   kdgaugeview: ^1.0.5
   geekyants_flutter_gauges: ^1.0.3
+  shared_preferences: ^2.2.3
+  mobile_scanner: ^5.1.1
+  gap: ^3.0.1
+  qr_scanner_overlay: ^0.0.2
 
 dev_dependencies:
   flutter_test:

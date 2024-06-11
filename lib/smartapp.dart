@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geekyants_flutter_gauges/geekyants_flutter_gauges.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:get/get.dart';
+import 'package:smarthome/scannerPage.dart';
 import 'controller.dart';
 
 class smarthome_app extends StatefulWidget {
@@ -210,6 +211,15 @@ class _smarthome_appState extends State<smarthome_app> {
                   ),
                 ),
               ),
+              IconButton(
+                onPressed: () => Get.to(() => ScannerPage()),
+                icon: Icon(Icons.add),
+                style: ButtonStyle(
+                  shape: WidgetStateProperty.all<CircleBorder>(
+                    CircleBorder(),
+                  ),
+                ),
+              )
             ],
           ),
         ),
